@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+    /* 1. MÀU SẮC CHỦ ĐẠO (Colors) */
+    --bg-main: #efefef;
+    --bg-auth: #f7f9f4; /* Nền tĩnh cho trang Login/Signup */
+    --cl-textAll: #222222; /* Màu chữ mặc định */
+    --cl-primary: #25951d; /* Màu xanh lá chủ đạo (Navigation/Logo) */
+    --cl-primary-hover: #157347; /* Màu xanh lá khi hover */
+
+    /* 2. FONT CHỮ (Typography) */
+    --font-title: "Poppins", sans-serif;
+    --font-content: "Inter", sans-serif;
+}
+
+/* ==============================================================
+   3. RESET & BASE
+   ============================================================== */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-color: var(--bg-main);
+    color: var(--cl-textAll);
+    font-size: 16px;
+    font-family: var(--font-content);
+}
+
+/* ==============================================================
+   4. BỐ CỤC CHUNG (Layouts & Wrappers)
+   ============================================================== */
+main {
+    padding: 125px 0 0 0;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 2;
+    height: 100vh;
+}
+
+.container {
+    max-width: 1240px;
+    width: 95%;
+    margin: 0 auto; /* Đảm bảo căn giữa */
+}
+
+.container.containerGap {
+    gap: 20px;
+}
+
+.section {
+    padding: 50px 0;
+}
+
+/* ==============================================================
+   5. UTILITIES VĂN BẢN (Text & Typography Utilities)
+   ============================================================== */
+.titlePage {
+    padding-top: 25px;
+    font-weight: 700;
+    font-size: 2rem;
+    font-family: var(--font-title);
+}
+
+/* Cắt chữ nhiều dòng (Dùng cho tên sản phẩm, thẻ mô tả) */
+.text-clamp-2, .card-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 0.9rem;
+}
+
+/* ==============================================================
+   6. UI COMPONENTS (Nút & Card)
+   ============================================================== */
+.btn-lg {
+    --bs-btn-font-size: 1.08rem;
+}
+
+/* Nút Trở về / Nút chuyển hướng có mũi tên */
+.btnPrev {
+    color: var(--cl-textAll);
+    text-decoration: none;
+    cursor: pointer;
+    gap: 10px;
+    padding-top: 12px;
+    display: inline-flex;
+    align-items: center;
+    transition: color 0.3s ease;
+}
+
+.btnPrev:hover {
+    color: var(--cl-primary-hover);
+}
+
+/* Form Card dùng chung cho Đăng nhập / Đăng ký */
+.auth-wrapper {
+    background-color: var(--bg-auth);
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.auth-card {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: none;
+    background-color: #fff;
+}
+
+/* Kích thước cụ thể cho từng form nếu cần */
+.auth-card.login-size { max-width: 400px; }
+.auth-card.sign-size { max-width: 450px; }
+
+/* ==============================================================
+   7. RESPONSIVE CHUNG
+   ============================================================== */
+@media screen and (max-width: 770px) {
+    main {
+        padding: 190px 0 0 0 !important;
+    }
+}

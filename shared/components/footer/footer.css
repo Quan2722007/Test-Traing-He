@@ -1,0 +1,79 @@
+:root {
+    --bg-footer: #052410;
+    --cl-contentFooter: #f5f5f5f0;
+}
+footer {
+    padding: 25px 0;
+    width: 100%;
+    background-color: var(--bg-footer);
+}
+.wrapFooter {
+    width: 100%;
+    gap: 40px;
+}
+.wrapFooter .blockFooter {
+    width: calc((100% - 40px * 2) / 3);
+    height: auto;
+    gap: 15px;
+}
+.blockFooter .titleFooter {
+    color: var(--cl-contentFooter);
+    font-size: 1.5rem;
+    font-weight: 700;
+    font-family: var(--font-title);
+}
+.blockFooter .infor {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--cl-contentFooter);
+}
+.blockFooter .infor .nameMeaning {
+    font-size: 18px;
+    font-weight: 600;
+    color: #00dd25;
+}
+.navBarFooter {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 0;
+    padding-left: 0;
+}
+.navBarFooter .navItem {
+    position: relative;
+    list-style: none;
+}
+.navBarFooter .navLinkFooter {
+    text-decoration: none;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--cl-contentFooter);
+}
+.navBarFooter .navLinkFooter:hover {
+    color: var(--cl-navText);
+}
+.wrapInfor {
+    gap: 15px;
+}
+.blockFooter.changeWidthBlock {
+    max-width: 200px;
+    width: 100%;
+}
+@media screen and (max-width: 1000px) {
+    .wrapFooter {
+        flex-wrap: wrap;
+    }
+    .wrapFooter .blockFooter {
+        width: calc((100% - 40px) / 2);
+    }
+}
+@media screen and (max-width: 680px) {
+    .wrapFooter {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .wrapFooter .blockFooter {
+        width: 100%;
+        gap: 10px;
+    }
+}
