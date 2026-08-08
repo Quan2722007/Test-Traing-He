@@ -45,7 +45,7 @@ header.innerHTML = `
         <div class="container containerHeader flex-wrap align-items-center justify-content-between">
             
             <a class="navbar-brand logo m-0" href="../../pages/homepage/homepage.html">
-                <img src="../../assets/logo/logo.png" alt="logo" height="40">
+                <img src="../../assets/images/logo/logo.png" alt="logo" height="40">
             </a>
 
             <button class="navbar-toggler shadow-none border-0 px-0 order-2 order-md-3 ms-auto ms-md-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
