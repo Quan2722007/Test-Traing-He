@@ -116,7 +116,7 @@ btnCart.addEventListener("click", () => {
 const btnLogin = header.querySelector(".btnLogin");
 if (btnLogin) {
     btnLogin.addEventListener("click", () => {
-        window.location.href = `../loginpage/loginpage.html`;
+        window.location.href = `../../pages/login/login.html`;
     });
 }
 
