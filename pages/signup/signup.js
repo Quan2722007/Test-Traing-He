@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hiển thị lỗi ngay bên dưới input
     function showError(input, message) {
         const formInput = input.closest(".formInput");
+        if (!formInput) return; // Thêm kiểm tra để thoát nếu không tìm thấy
         const targetElement = formInput.querySelector(".input-group") || input;
         let errorElement = formInput.querySelector(".errorText");
         if (!errorElement) {
@@ -26,6 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ẩn lỗi và đánh dấu là thành công
     function showSuccess(input) {
         const formInput = input.closest(".formInput");
+        if (!formInput) return; // Thêm kiểm tra để thoát nếu không tìm thấy
         const errorElement = formInput.querySelector(".errorText");
         input.classList.remove("is-invalid");
         if (errorElement) {
@@ -38,7 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     strengthText.style.fontSize = "0.85rem";
     boxPassword.appendChild(strengthText);
 
-    //Kiểm tra đôi mạnh của mật khẩu
+    //Kiểm tra độ mạnh của mật khẩu
     function checkPasswordStrength(password) {
         let strength = 0;
         if (password.length >= 6) strength += 1;
@@ -75,10 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (fullName.length === 0) {
             return { valid: false, message: "Vui lòng điền đầy đủ thông tin." };
         }
-        const hasNumber = /\d/.test(fullName);
+        const hasNumber = /[^\p{L}\s]/u.test(fullName);
 
         if (hasNumber) {
-            return { valid: false, message: "Họ tên không được chứa số." };
+            return { valid: false, message: "Họ tên không được chứa số hoặc ký tự đặc biệt." };
         }
 
         const words = fullName.trim().split(/\s+/);
@@ -196,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * Lấy dữ liệu từ LocalStorage. Nếu không có, tạo một bản ghi mới.
-     * @returns {Promise<{mainRecord: object, recordId: string}>} - Một object chứa bản ghi chính và ID của nó.
+     * @returns {{mainRecord: object, recordId: string}} - Một object chứa bản ghi chính và ID của nó.
      */
     function getStorageData() {
         let data = [];
@@ -216,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Nếu không có dữ liệu hoặc dữ liệu không hợp lệ, tạo cấu trúc mới
             mainRecord = {
                 id: "1",
-                profiles: [],
+                users: [],
                 products: [],
             };
             localStorage.setItem(STORAGE_KEY, JSON.stringify([mainRecord]));
@@ -225,9 +227,9 @@ document.addEventListener("DOMContentLoaded", () => {
             mainRecord = data[0];
         }
 
-        // Đảm bảo mainRecord.profiles là một mảng
-        if (!Array.isArray(mainRecord.profiles)) {
-            mainRecord.profiles = [];
+        // Đảm bảo mainRecord.users là một mảng
+        if (!Array.isArray(mainRecord.users)) {
+            mainRecord.users = [];
         }
         return { mainRecord, recordId: mainRecord.id };
     }
@@ -245,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const data = JSON.parse(storedData);
             const mainRecord = data[0];
-            mainRecord.profiles.push(newUser);
+            mainRecord.users.push(newUser);
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         } catch (error) {
             throw new Error("Lỗi khi cập nhật dữ liệu trong LocalStorage.");
@@ -261,9 +263,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const username = usernameInput.value.trim();
-        if (mainRecord.profiles.some((u) => u.tenDangNhap === username)) {
-            alert("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.");
-            return; // Dừng lại nếu tên đã tồn tại
+        if (mainRecord.users.some((u) => u.tenDangNhap === username)) {
+            return showError(usernameInput, "Tên đăng nhập đã tồn tại."); // Dừng lại nếu tên đã tồn tại
         }
 
         // 2. Tạo người dùng mới và cập nhật bản ghi
