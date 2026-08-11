@@ -1,5 +1,3 @@
-import { showError, showSuccess } from "../../shared/components/loginAndSignUp/displayError.js";
-
 document.addEventListener("DOMContentLoaded", () => {
     const btnSign = document.getElementById("btnSign");
     const fullnameInput = document.getElementById("fullname");
@@ -10,7 +8,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmPasswordInput = document.getElementById("confirmPassword");
     const formInputs = document.querySelectorAll(".formInput");
 
-    
+    // Hiển thị lỗi ngay bên dưới input
+    function showError(input, message) {
+        const formInput = input.closest(".formInput");
+        if (!formInput) return; // Thêm kiểm tra để thoát nếu không tìm thấy
+        const targetElement = formInput.querySelector(".input-group") || input;
+        let errorElement = formInput.querySelector(".errorText");
+        if (!errorElement) {
+            errorElement = document.createElement("div");
+            errorElement.classList.add("errorText", "text-danger", "mt-1");
+            errorElement.style.fontSize = "0.85rem";
+            targetElement.insertAdjacentElement("afterend", errorElement);
+        }
+        input.classList.add("is-invalid");
+        errorElement.innerText = message;
+    }
+
+    // Ẩn lỗi và đánh dấu là thành công
+    function showSuccess(input) {
+        const formInput = input.closest(".formInput");
+        if (!formInput) return; // Thêm kiểm tra để thoát nếu không tìm thấy
+        const errorElement = formInput.querySelector(".errorText");
+        input.classList.remove("is-invalid");
+        if (errorElement) {
+            errorElement.innerText = "";
+        }
+    }
 
     const strengthText = document.createElement("div");
     strengthText.style.marginTop = "5px";
@@ -54,10 +77,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (fullName.length === 0) {
             return { valid: false, message: "Vui lòng điền đầy đủ thông tin." };
         }
-        const hasNumber = /\d/.test(fullName);
+        const hasNumber = /[^\p{L}\s]/u.test(fullName);
 
         if (hasNumber) {
-            return { valid: false, message: "Họ tên không được chứa số." };
+            return { valid: false, message: "Họ tên không được chứa số hoặc ký tự đặc biệt." };
         }
 
         const words = fullName.trim().split(/\s+/);
@@ -175,7 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     /**
      * Lấy dữ liệu từ LocalStorage. Nếu không có, tạo một bản ghi mới.
-     * @returns {Promise<{mainRecord: object, recordId: string}>} - Một object chứa bản ghi chính và ID của nó.
+     * @returns {{mainRecord: object, recordId: string}} - Một object chứa bản ghi chính và ID của nó.
      */
     function getStorageData() {
         let data = [];
@@ -241,8 +264,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const username = usernameInput.value.trim();
         if (mainRecord.users.some((u) => u.tenDangNhap === username)) {
-            alert("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.");
-            return; // Dừng lại nếu tên đã tồn tại
+            return showError(usernameInput, "Tên đăng nhập đã tồn tại."); // Dừng lại nếu tên đã tồn tại
         }
 
         // 2. Tạo người dùng mới và cập nhật bản ghi
