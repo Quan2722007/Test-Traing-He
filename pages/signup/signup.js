@@ -1,3 +1,5 @@
+import { showError, showSuccess } from "../../shared/components/loginAndSignUp/displayError.js";
+
 document.addEventListener("DOMContentLoaded", () => {
     const btnSign = document.getElementById("btnSign");
     const fullnameInput = document.getElementById("fullname");
@@ -8,37 +10,14 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmPasswordInput = document.getElementById("confirmPassword");
     const formInputs = document.querySelectorAll(".formInput");
 
-    // Hiển thị lỗi ngay bên dưới input
-    function showError(input, message) {
-        const formInput = input.closest(".formInput");
-        const targetElement = formInput.querySelector(".input-group") || input;
-        let errorElement = formInput.querySelector(".errorText");
-        if (!errorElement) {
-            errorElement = document.createElement("div");
-            errorElement.classList.add("errorText", "text-danger", "mt-1");
-            errorElement.style.fontSize = "0.85rem";
-            targetElement.insertAdjacentElement("afterend", errorElement);
-        }
-        input.classList.add("is-invalid");
-        errorElement.innerText = message;
-    }
-
-    // Ẩn lỗi và đánh dấu là thành công
-    function showSuccess(input) {
-        const formInput = input.closest(".formInput");
-        const errorElement = formInput.querySelector(".errorText");
-        input.classList.remove("is-invalid");
-        if (errorElement) {
-            errorElement.innerText = "";
-        }
-    }
+    
 
     const strengthText = document.createElement("div");
     strengthText.style.marginTop = "5px";
     strengthText.style.fontSize = "0.85rem";
     boxPassword.appendChild(strengthText);
 
-    //Kiểm tra đôi mạnh của mật khẩu
+    //Kiểm tra độ mạnh của mật khẩu
     function checkPasswordStrength(password) {
         let strength = 0;
         if (password.length >= 6) strength += 1;
@@ -216,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // Nếu không có dữ liệu hoặc dữ liệu không hợp lệ, tạo cấu trúc mới
             mainRecord = {
                 id: "1",
-                profiles: [],
+                users: [],
                 products: [],
             };
             localStorage.setItem(STORAGE_KEY, JSON.stringify([mainRecord]));
@@ -225,9 +204,9 @@ document.addEventListener("DOMContentLoaded", () => {
             mainRecord = data[0];
         }
 
-        // Đảm bảo mainRecord.profiles là một mảng
-        if (!Array.isArray(mainRecord.profiles)) {
-            mainRecord.profiles = [];
+        // Đảm bảo mainRecord.users là một mảng
+        if (!Array.isArray(mainRecord.users)) {
+            mainRecord.users = [];
         }
         return { mainRecord, recordId: mainRecord.id };
     }
@@ -245,7 +224,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
             const data = JSON.parse(storedData);
             const mainRecord = data[0];
-            mainRecord.profiles.push(newUser);
+            mainRecord.users.push(newUser);
             localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
         } catch (error) {
             throw new Error("Lỗi khi cập nhật dữ liệu trong LocalStorage.");
@@ -261,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const username = usernameInput.value.trim();
-        if (mainRecord.profiles.some((u) => u.tenDangNhap === username)) {
+        if (mainRecord.users.some((u) => u.tenDangNhap === username)) {
             alert("Tên đăng nhập đã tồn tại! Vui lòng chọn tên khác.");
             return; // Dừng lại nếu tên đã tồn tại
         }
