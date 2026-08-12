@@ -1,4 +1,3 @@
-import { showError, showSuccess } from "../../shared/components/loginAndSignUp/displayError.js";
 document.addEventListener("DOMContentLoaded", function () {
     const usernameInput = document.getElementById("username");
     const passwordInput = document.getElementById("password");
@@ -43,3 +42,4 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+

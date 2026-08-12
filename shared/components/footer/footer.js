@@ -13,10 +13,10 @@ footer.innerHTML = `
                 <div class="titleFooter">Khám phá</div>
                 <ul class="navBarFooter flex-column">
                     <li class="navItem d-flex align-items-center ">
-                        <a class="navLinkFooter" href="../../pages/homepage/homepage.html" id="homepage">Trang chủ</a>
+                        <a class="navLinkFooter" href="/pages/homepage/homepage.html" id="homepage">Trang chủ</a>
                     </li>
                     <li class="navItem d-flex align-items-center ">
-                        <a class="navLinkFooter" href="../../pages/homepage/homepage.html" id="homepage">Cây cảnh</a>
+                        <a class="navLinkFooter" href="/pages/productspage/productspage.html" id="productspage">Cây cảnh</a>
                     </li>
                 </ul>
             </div>
@@ -31,4 +31,5 @@ footer.innerHTML = `
         </div>
     </div>
 `;
+  
 export default footer;

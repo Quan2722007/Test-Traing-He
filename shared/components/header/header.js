@@ -32,8 +32,6 @@ header.innerHTML = `
                         <span id="display-username">Username</span>
                     </button>
                     <ul class="dropdown-menu dropdown-menu-end shadow-sm" aria-labelledby="userDropdown">
-                        <li><a class="dropdown-item" href="#">Thông tin tài khoản</a></li>
-                        <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item text-danger fw-bold" href="#" id="btnLogout"><i class="fa-solid fa-right-from-bracket me-2"></i> Đăng xuất</a></li>
                     </ul>
                 </div>
@@ -42,10 +40,10 @@ header.innerHTML = `
     </div>
     
     <nav class="navbar navbar-expand-lg boxHeader bg-white shadow-sm">
-        <div class="container containerHeader flex-wrap align-items-center justify-content-between">
+        <div class="container containerHeader flex-wrap align-items-center justify-content-lg-between">
             
-            <a class="navbar-brand logo m-0" href="../../pages/homepage/homepage.html">
-                <img src="../../assets/images/logo/logo.png" alt="logo" height="40">
+            <a class="navbar-brand logo m-0" href="/pages/homepage/homepage.html">
+                <img src="/assets/images/logo/logo.png" alt="logo" height="40">
             </a>
 
             <button class="navbar-toggler shadow-none border-0 px-0 order-2 order-md-3 ms-auto ms-md-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -63,13 +61,13 @@ header.innerHTML = `
 
             <div class="collapse navbar-collapse order-5 order-lg-1" id="navbarContent">
                 <ul class="navbar-nav navBar mx-lg-auto mb-2 mb-lg-0 gap-2 gap-lg-4 text-center">
-                    <li class="navItem nav-item d-flex align-items-center justify-content-center">
-                        <a class="navLink nav-link" href="../../pages/homepage/homepage.html" id="homepage">Trang chủ</a>
+                    <li class="navItem nav-item d-flex align-items-center justify-content-center ">
+                        <a class="navLink nav-link" href="/pages/homepage/homepage.html" id="homepage">Trang chủ</a>
                     </li>
-                    <li class="navItem nav-item d-flex align-items-center justify-content-center">
-                        <a class="navLink nav-link" href="../../pages/productspage/productspage.html" id="productspage">Cây cảnh</a>
+                    <li class="navItem nav-item d-flex align-items-center justify-content-center ">
+                        <a class="navLink nav-link" href="/pages/products/products.html" id="productspage">Cây cảnh</a>
                     </li>
-                </ul>
+                </ul>   
                 
                 <div class="d-block d-md-none mt-3 pt-3 border-top text-center">
                     <div class="mb-2 text-muted">
@@ -101,22 +99,22 @@ const btnSearch = header.querySelector(".btnSearch");
 btnSearch.addEventListener("click", (e) => {
     e.preventDefault();
     const keyword = searchValue.value.toLowerCase().trim();
-    if (keyword) {
-        window.location.href = `../productspage/productspage.html?keyword=${encodeURIComponent(keyword)}`;
-    } else {
+    if (!keyword) {
         searchValue.value = "";
+        return;
     }
+    window.location.href = `/pages/productspage/productspage.html?keyword=${encodeURIComponent(keyword)}`;
 });
 
 const btnCart = header.querySelector(".btnCart");
 btnCart.addEventListener("click", () => {
-    window.location.href = `../addtocartpage/addtocartpage.html`;
+    window.location.href = "/pages/shop/addtocartpage.html";
 });
 
 const btnLogin = header.querySelector(".btnLogin");
 if (btnLogin) {
     btnLogin.addEventListener("click", () => {
-        window.location.href = `../../pages/login/login.html`;
+        window.location.href = "/pages/login/login.html";
     });
 }
 

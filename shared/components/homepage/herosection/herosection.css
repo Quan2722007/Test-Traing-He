@@ -1,0 +1,65 @@
+:root {
+    --cl-titleHero: #ffffff;
+    --cl-contentHero: #faf9f9f2;
+}
+.bgHero {
+    width: 100%;
+    height: 500px; /* Đặt chiều cao cố định cho hero section */
+    overflow: hidden; /* Đảm bảo các phần tử con không tràn ra ngoài */
+}
+.bgHero .bgOverlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.542);
+    z-index: 1; /* Đảm bảo lớp phủ nằm trên ảnh */
+}
+.bgHero .heroBanner {
+    gap: 20px;
+    z-index: 2; /* Đảm bảo nội dung nằm trên cùng */
+}
+.heroBanner .titleHero {
+    font-family: var(--font-title);
+    color: var(--cl-titleHero);
+    font-size: clamp(20px, 3vw, 32px);
+    font-weight: 700;
+}
+.heroBanner .contentHero {
+    font-family: var(--font-content);
+    color: var(--cl-contentHero);
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    font-weight: 400;
+    width: 80%;
+}
+.heroBanner .btnCTA {
+    font-size: 20px;
+    padding: 8px 16px;
+}
+/* Thêm vào file: shared/components/homepage/herosection/herosection.css */
+
+.hero-carousel .picture {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.hero-carousel .picture.active {
+    opacity: 1;
+}
+@media screen and (max-width: 905px) {
+    .bgHero {
+        height: 306px;
+    }
+    .bgHero .picture {
+        object-fit: cover;
+    }
+}
+@media screen and (max-width: 770px) {
+    .bgHero {
+        height: 400px;
+    }
+}

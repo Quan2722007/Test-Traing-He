@@ -101,6 +101,31 @@ main {
     color: var(--cl-primary-hover);
 }
 
+/* Nút chung cho primary và secondary */
+.primary {
+    background-color: var(--bg-primary);
+    color: var(--cl-textPrimary);
+    cursor: pointer;
+    border-radius: 8px;
+    width: fit-content;
+    height: fit-content;
+    border: 0;
+    font-family: var(--font-content);
+}
+.primary:active,
+.secondary:active {
+    transform: translateY(3px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.438);
+}
+.secondary {
+    color: var(--bg-primary);
+    border: 2px solid var(--bg-primary);
+    cursor: pointer;
+    border-radius: 7px;
+    width: fit-content;
+    height: fit-content;
+}
+
 /* Form Card dùng chung cho Đăng nhập / Đăng ký */
 .auth-wrapper {
     background-color: var(--bg-auth);
@@ -116,6 +141,11 @@ main {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     border: none;
     background-color: #fff;
+}
+
+:root {
+    --bg-primary: #157347;
+    --cl-textPrimary: #ffffff;
 }
 
 /* Kích thước cụ thể cho từng form nếu cần */
