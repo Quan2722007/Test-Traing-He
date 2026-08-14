@@ -1,8 +1,7 @@
 const header = document.getElementsByTagName("header")[0] ?? [];
 header.innerHTML = `
     <div class="boxHeader bgGreen py-2">
-        <div class="container containerHeader d-flex justify-content-between align-items-center">
-            
+        <div class="containerPage containerHeader d-flex justify-content-between align-items-center">
             <div class="d-none d-md-flex gap-4">
                 <div class="block d-flex align-items-center p-right">
                     <i class="fa-regular fa-clock icon me-2"></i>
@@ -23,7 +22,7 @@ header.innerHTML = `
                 </div>
                 
                 <div id="auth-buttons" class="block p-left">
-                    <button class="btn btn-success btn-sm btnLogin">Đăng nhập</button>
+                    <button class="btn btn-success btn-sm btnLogin primary">Đăng nhập</button>
                 </div>
 
                 <div id="user-menu" class="dropdown d-none">
@@ -40,7 +39,7 @@ header.innerHTML = `
     </div>
     
     <nav class="navbar navbar-expand-lg boxHeader bg-white shadow-sm">
-        <div class="container containerHeader flex-wrap align-items-center justify-content-lg-between">
+        <div class="containerPage containerHeader flex-wrap align-items-center justify-content-lg-between">
             
             <a class="navbar-brand logo m-0" href="/pages/homepage/homepage.html">
                 <img src="/assets/images/logo/logo.png" alt="logo" height="40">
@@ -85,26 +84,34 @@ header.innerHTML = `
     </nav>
 `;
 
-const searchValue = header.querySelector(".search");
-searchValue.addEventListener("input", (e) => {
-    const value = e.target.value.trim();
-    if (value) {
-        btnSearch.setAttribute("type", "submit");
-    } else {
-        btnSearch.setAttribute("type", "reset");
-    }
-});
+function setActiveNavLink() {
+    const navLinks = header.querySelectorAll(".navLink");
+    const currentPath = window.location.pathname;
 
-const btnSearch = header.querySelector(".btnSearch");
-btnSearch.addEventListener("click", (e) => {
-    e.preventDefault();
-    const keyword = searchValue.value.toLowerCase().trim();
-    if (!keyword) {
-        searchValue.value = "";
-        return;
-    }
-    window.location.href = `/pages/productspage/productspage.html?keyword=${encodeURIComponent(keyword)}`;
-});
+    navLinks.forEach((link) => {
+        const linkPath = new URL(link.href).pathname;
+        if (linkPath === currentPath) {
+            link.classList.add("active");
+        } else {
+            link.classList.remove("active");
+        }
+    });
+}
+
+const searchForm = header.querySelector(".searchBar");
+if (searchForm) {
+    searchForm.addEventListener("submit", (e) => {
+        e.preventDefault(); 
+        const searchInput = searchForm.querySelector(".search");
+        const keyword = searchInput.value.trim();
+
+        if (keyword) {
+            window.location.href = `/pages/products/products.html?keyword=${encodeURIComponent(keyword)}`;
+        } else {
+            searchInput.focus();
+        }
+    });
+}
 
 const btnCart = header.querySelector(".btnCart");
 btnCart.addEventListener("click", () => {
@@ -146,5 +153,8 @@ if (btnLogout) {
         }
     });
 }
+
+// Gọi hàm để đặt trạng thái active khi trang được tải
+document.addEventListener("DOMContentLoaded", setActiveNavLink);
 
 export default header;

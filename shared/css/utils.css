@@ -5,7 +5,7 @@
 :root {
     /* 1. MÀU SẮC CHỦ ĐẠO (Colors) */
     --bg-main: #efefef;
-    --bg-auth: #f7f9f4; /* Nền tĩnh cho trang Login/Signup */
+    --bg-auth: #f7f9f4; 
     --cl-textAll: #222222; /* Màu chữ mặc định */
     --cl-primary: #25951d; /* Màu xanh lá chủ đạo (Navigation/Logo) */
     --cl-primary-hover: #157347; /* Màu xanh lá khi hover */
@@ -42,16 +42,17 @@ main {
     flex-direction: column;
     position: relative;
     z-index: 2;
-    height: 100vh;
+    padding-left: 0 !important;
+    padding-right: 0 !important
 }
 
-.container {
+.containerPage {
     max-width: 1240px;
-    width: 95%;
+    width: 95% !important;
     margin: 0 auto; /* Đảm bảo căn giữa */
 }
 
-.container.containerGap {
+.containerPage.containerGap {
     gap: 20px;
 }
 
@@ -78,6 +79,14 @@ main {
     font-size: 0.9rem;
 }
 
+/* Cắt chữ 1 dòng */
+.text-clamp-1 {
+    white-space: nowrap; /* Ngăn không cho văn bản xuống dòng */
+    overflow: hidden;
+    text-overflow: ellipsis; /* Hiển thị dấu "..." */
+    display: block; /* Đảm bảo hoạt động nhất quán */
+}
+
 /* ==============================================================
    6. UI COMPONENTS (Nút & Card)
    ============================================================== */
@@ -91,7 +100,6 @@ main {
     text-decoration: none;
     cursor: pointer;
     gap: 10px;
-    padding-top: 12px;
     display: inline-flex;
     align-items: center;
     transition: color 0.3s ease;
@@ -111,6 +119,7 @@ main {
     height: fit-content;
     border: 0;
     font-family: var(--font-content);
+    padding: 8px 16px !important;
 }
 .primary:active,
 .secondary:active {

@@ -1,7 +1,7 @@
 const footer = document.getElementsByTagName("footer")[0] ?? [];
 footer.innerHTML = `
     <div class="boxFooter">
-        <div class="container d-flex justify-content-between wrapFooter">
+        <div class="containerPage d-flex justify-content-between wrapFooter">
             <div class=" d-flex flex-column blockFooter">
                 <div class="titleFooter">About Green Haven</div>
                 <div class="infor">

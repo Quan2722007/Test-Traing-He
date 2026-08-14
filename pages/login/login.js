@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Lấy dữ liệu từ localStorage
         const storedData = JSON.parse(localStorage.getItem("users"));
         if (!storedData || !Array.isArray(storedData) || storedData.length === 0) {
-            alert("Không tìm thấy dữ liệu trong localStorage.");
+            alert("Tài khoản chưa được đăng ký. Vui lòng đăng ký trước.");
             return;
         }
     
@@ -36,9 +36,10 @@ document.addEventListener("DOMContentLoaded", function () {
             
         } else {
             alert("Đăng nhập thành công!");
+
             // Lưu thông tin người dùng đang hoạt động vào localStorage
             localStorage.setItem("activeUser", JSON.stringify(user));
-            window.location.href = "../homepage/homepage.html"; // Thay đổi đường dẫn theo nhu cầu
+            window.location.href = "../homepage/homepage.html"; 
         }
     });
 });
