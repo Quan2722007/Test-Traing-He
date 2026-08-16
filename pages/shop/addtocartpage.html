@@ -1,50 +1,66 @@
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Document</title>
-        <link rel="stylesheet" href="addtocartpage.css" />
-        <link rel="stylesheet" href="../../shared/css/utils.css" />
-        <link rel="stylesheet" href="../../shared/css/bootstrap.min.css" />
-    </head>
-    <body>
-        <header></header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Giỏ hàng</title>
+    <link rel="stylesheet" href="addtocartpage.css" />
+    <link rel="stylesheet" href="../../shared/css/utils.css" />
+    <link rel="stylesheet" href="../../shared/css/bootstrap.min.css" />
+  </head>
+  <body>
+    <header></header>
 
-        <main>
-            <div class="container">
-                <a href="../homepage/homepage.html" class="btnPrev d-flex align-items-center"><i class="fa-solid fa-arrow-left-long"></i> Quay lại</a>
-                <div class="titlePage">Giỏ hàng của bạn</div>
-            </div>
-            <section class="section container">
-                <div class="table-responsive shadow-sm rounded">
-                    <table class="table table-bordered align-middle text-center m-0">
-                        <thead class="table-success">
-                            <tr>
-                                <th scope="col">Hình ảnh</th>
-                                <th scope="col">Tên cây</th>
-                                <th scope="col" style="width: 150px">Số lượng</th>
-                                <th scope="col">Thành tiền</th>
-                                <th scope="col">Thao tác</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cartTableBody"></tbody>
-                    </table>
-                </div>
+    <main>
+      <div class="container">
+        <a
+          href="../homepage/homepage.html"
+          class="btnPrev d-flex align-items-center"
+          ><i class="fa-solid fa-arrow-left-long"></i> Quay lại</a
+        >
+        <div class="titlePage">Giỏ hàng của bạn</div>
+      </div>
+      <section class="section container">
+        <div class="table-responsive shadow-sm rounded">
+          <table class="table table-bordered align-middle text-center m-0">
+            <thead class="table-success">
+              <tr>
+                <th scope="col">Hình ảnh</th>
+                <th scope="col">Tên cây</th>
+                <th scope="col" style="width: 150px">Số lượng</th>
+                <th scope="col">Thành tiền</th>
+                <th scope="col">Thao tác</th>
+              </tr>
+            </thead>
+            <tbody id="cartTableBody"></tbody>
+          </table>
+        </div>
 
-                <div class="d-flex flex-column align-items-start mt-4 gap-3">
-                    <h4 class="mb-3">Tổng cộng: <span class="text-danger fw-bold" id="totalCartPrice">220.000đ</span></h4>
-                    <div class="d-flex justify-content-center text-center w-100 w-md-auto">
-                        <button class="btn btn-success btn-lg px-5 w-md-auto btnBuy">Thanh toán</button>
-                    </div>
-                </div>
-            </section>
-        </main>
+        <div class="d-flex flex-column align-items-start mt-4 gap-3">
+          <h4 class="mb-3">
+            Tổng cộng:
+            <span class="text-danger fw-bold" id="totalCartPrice"
+              >220.000đ</span
+            >
+          </h4>
+          <div
+            class="d-flex justify-content-center text-center w-100 w-md-auto"
+          >
+            <button class="btn btn-success btn-lg px-5 w-md-auto btnBuy">
+              Thanh toán
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
 
-        <footer></footer>
+    <footer></footer>
 
-        <script src="../../shared/js/bootstrap.min.js"></script>
-        <script type="module" src="./addtocartpage.js"></script>
-        <script src="https://kit.fontawesome.com/c4edd7a73c.js" crossorigin="anonymous"></script>
-    </body>
+    <script src="../../shared/js/bootstrap.bundle.js"></script>
+    <script type="module" src="./addtocartpage.js"></script>
+    <script
+      src="https://kit.fontawesome.com/c4edd7a73c.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
