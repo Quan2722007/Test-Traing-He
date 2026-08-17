@@ -3,14 +3,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100..900;1,100..900&display=swap");
 
 :root {
-    /* 1. MÀU SẮC CHỦ ĐẠO (Colors) */
+    /*  MÀU SẮC CHỦ ĐẠO (Colors) */
     --bg-main: #efefef;
     --bg-auth: #f7f9f4; 
     --cl-textAll: #222222; /* Màu chữ mặc định */
     --cl-primary: #25951d; /* Màu xanh lá chủ đạo (Navigation/Logo) */
     --cl-primary-hover: #157347; /* Màu xanh lá khi hover */
 
-    /* 2. FONT CHỮ (Typography) */
+    /* FONT CHỮ (Typography) */
     --font-title: "Poppins", sans-serif;
     --font-content: "Inter", sans-serif;
 }
@@ -49,7 +49,7 @@ main {
 .containerPage {
     max-width: 1240px;
     width: 95% !important;
-    margin: 0 auto; /* Đảm bảo căn giữa */
+    margin: 0 auto; 
 }
 
 .containerPage.containerGap {
@@ -66,11 +66,11 @@ main {
 .titlePage {
     padding-top: 25px;
     font-weight: 700;
-    font-size: 2rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
     font-family: var(--font-title);
 }
 
-/* Cắt chữ nhiều dòng (Dùng cho tên sản phẩm, thẻ mô tả) */
+/* Cắt chữ nhiều dòng  */
 .text-clamp-2, .card-text {
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -84,7 +84,7 @@ main {
     white-space: nowrap; /* Ngăn không cho văn bản xuống dòng */
     overflow: hidden;
     text-overflow: ellipsis; /* Hiển thị dấu "..." */
-    display: block; /* Đảm bảo hoạt động nhất quán */
+    display: block; 
 }
 
 /* ==============================================================

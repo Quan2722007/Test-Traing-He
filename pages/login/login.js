@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             alert("Đăng nhập thành công!");
 
-            // Lưu thông tin người dùng đang hoạt động vào localStorage
+            // Lưu thông tin người dùng vừa đăng ký vào localStorage
             localStorage.setItem("activeUser", JSON.stringify(user));
             window.location.href = "../homepage/homepage.html"; 
         }
