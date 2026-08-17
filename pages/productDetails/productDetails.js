@@ -18,7 +18,7 @@ const getProduct = async () => {
     try {
         const res = await fetch(API_URL);
         const data = await res.json();
-        // API trả về một mảng chứa một object, object đó chứa mảng products
+        // API trả về một mảng chứa một object
         const allProducts = data[0]?.products || [];
         const product = allProducts.find((p) => p.id == id); // So sánh với id từ URL
 
@@ -125,7 +125,7 @@ const renderProduct = (p) => {
         const activeUser = localStorage.getItem("activeUser");
         if (!activeUser) {
             alert("Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng!");
-            window.location.href = "../login/login.html"; // Chuyển hướng đến trang đăng nhập
+            window.location.href = "../login/login.html"; 
             return;
         }
         const productInfo = {

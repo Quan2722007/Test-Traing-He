@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Hiển thị lỗi ngay bên dưới input
     function showError(input, message) {
         const formInput = input.closest(".formInput");
-        if (!formInput) return; // Thêm kiểm tra để thoát nếu không tìm thấy
+        if (!formInput) return;
         const targetElement = formInput.querySelector(".input-group") || input;
         let errorElement = formInput.querySelector(".errorText");
         if (!errorElement) {
@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Ẩn lỗi và đánh dấu là thành công
     function showSuccess(input) {
         const formInput = input.closest(".formInput");
-        if (!formInput) return; // Thêm kiểm tra để thoát nếu không tìm thấy
+        if (!formInput) return;
         const errorElement = formInput.querySelector(".errorText");
         input.classList.remove("is-invalid");
         if (errorElement) {
@@ -196,10 +196,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const STORAGE_KEY = "users";
 
-    /**
-     * Lấy dữ liệu từ LocalStorage. Nếu không có, tạo một bản ghi mới.
-     * @returns {{mainRecord: object, recordId: string}} - Một object chứa bản ghi chính và ID của nó.
-     */
     function getStorageData() {
         let data = [];
         let mainRecord = null;
@@ -227,17 +223,13 @@ document.addEventListener("DOMContentLoaded", () => {
             mainRecord = data[0];
         }
 
-        // Đảm bảo mainRecord.users là một mảng
+        // Kiểm tra mainRecord.users là một mảng
         if (!Array.isArray(mainRecord.users)) {
             mainRecord.users = [];
         }
         return { mainRecord, recordId: mainRecord.id };
     }
 
-    /**
-     * Lưu người dùng mới vào LocalStorage.
-     * @param {object} newUser - Đối tượng người dùng mới cần tạo.
-     */
     function registerUserInStorage(newUser) {
         const storedData = localStorage.getItem(STORAGE_KEY);
         if (!storedData) {
@@ -255,7 +247,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     async function handleRegistration() {
-        // 1. Lấy dữ liệu từ LocalStorage và kiểm tra trùng lặp
+        // Lấy dữ liệu từ LocalStorage và kiểm tra trùng lặp
         const { mainRecord, recordId } = getStorageData();
 
         if (!mainRecord || !recordId) {
@@ -267,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return showError(usernameInput, "Tên đăng nhập đã tồn tại."); // Dừng lại nếu tên đã tồn tại
         }
 
-        // 2. Tạo người dùng mới và cập nhật bản ghi
+        // Tạo người dùng mới và cập nhật bản ghi
         const newUser = {
             id: "user_" + Date.now(),
             tenDangNhap: username,
@@ -277,7 +269,7 @@ document.addEventListener("DOMContentLoaded", () => {
             hoTen: fullnameInput.value.trim(),
         };
 
-        // 3. Lưu người dùng mới vào LocalStorage
+        // Lưu người dùng mới vào LocalStorage
         registerUserInStorage(newUser);
 
         alert("Đăng ký tài khoản thành công! Bạn có thể đăng nhập ngay bây giờ.");
@@ -307,7 +299,7 @@ document.addEventListener("DOMContentLoaded", () => {
             console.error("Lỗi khi đăng ký:", error);
             alert("Lỗi kết nối máy chủ, vui lòng thử lại!");
         } finally {
-            // Dù thành công hay thất bại, bật lại nút và trả lại văn bản cũ
+            // Bật lại nút và trả lại văn bản cũ dù thành công hay thất bại
             btnSign.textContent = "Đăng ký";
             btnSign.disabled = false;
         }
